@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Even Handling</title>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="mengurangi">-</button>
+        <span>{{count}}</span>
+        <button @click="menambah">+</button>
+        <br>
+        <button @click="sayHello('iyas bagus')">Say Hello</button>
+        <br>
+        <!-- shorcut v-on:keydown.enter = @keydown.enter -->
+        <input type="text" v-on:keydown.enter="sayHello('wak')">
+        <br>
+        <!-- shorcut v-on:submit.prevent = @submit.prevent -->
+        <form method="post" action="whatever.html" v-on:submit.prevent>
+            <input type="text">
+            <input type="submit" value="send">
+        </form>
+    </div>
+
+    <script type="module">
+        import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+
+        createApp({
+            data() {
+                return {
+                    count: 0,
+                }
+            },
+            methods: {
+                mengurangi() {
+                    this.count--
+                },
+                menambah() {
+                    this.count++
+                },
+                sayHello(whatever) {
+                    alert('halo '+ whatever)
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>

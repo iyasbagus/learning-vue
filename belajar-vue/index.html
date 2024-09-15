@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mengenal Vue</title>
+</head>
+<body>
+    <div id="app">
+        {{ message }}
+        <div v-text="message">Teks lain</div>
+        <button @click="kurang()">-</button>
+        {{ count }}
+        <button @click="tambah()">+</button>
+        <div v-html="message3"></div>
+    </div>
+    
+    <script type="module">
+        import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+
+        createApp({
+            data() {
+                return {
+                    message : "Aku siap Belajar VUE JS",
+                    message2: "Ini akan Refresh",
+                    message3: "<strong>Ini tulisan Bold</strong>",
+                    count : 0
+                }
+            },
+            methods: {
+                tambah() {
+                    this.count++
+                },
+                kurang() {
+                    this.count--
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>

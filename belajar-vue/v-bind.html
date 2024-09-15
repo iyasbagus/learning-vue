@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>V-bind</title>
+</head>
+
+<style>
+    .textbiru{
+        color: blueviolet;
+    }
+</style>
+
+<body>
+    <div id="app">
+        <h2>User</h2>
+        <div v-bind:class="selectedClass">
+            name : {{ user.name }}
+        </div>
+        <div>
+            <img v-bind:src="user.image" v-bind:style="{width: responsiveWidth}" v-bind:alt="'image of ' + user.name"
+            v-bind:title="'image of ' + user.name" >
+        </div>
+        <!-- shorcut v-bind:href = :href  -->
+        <a v-bind:href="url">Google</a>
+    </div>
+
+    <script type="module">
+        import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+
+        createApp({
+            data() {
+                return {
+                    url: 'https://google.com',
+                    user: {
+                        image: 'https://images.unsplash.com/photo-1719937206667-ac87c15ad3e9?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
+                        name: 'Iyas'
+                    },
+                    responsiveWidth: '300px', //tergantung ukuran (di dapat dari perhitungan)
+                    selectedClass: 'textbiru'
+                }
+            },
+        }).mount('#app')
+    </script>
+</body>
+
+</html>

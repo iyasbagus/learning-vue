@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>lopping V-for</title>
+</head>
+
+<body>
+    <div id="app">
+        <div v-for="angka in 10">
+            <ul>
+                <li>{{angka}}</li>
+            </ul>
+        </div>
+        <ul v-for="(whatever, index) in fruits">
+            <li>{{whatever}} {{index}} <button @click="hapus(index)">x</button></li>
+        </ul>
+        <ul v-for="(item, main) in footballPlayers">
+            <li>{{item.name}} - {{item.position}} - <button @click="menghapus(main)">hapus</button></li>
+        </ul>
+    </div>
+
+    <script type="module">
+        import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+
+        createApp({
+            data() {
+                return {
+                    fruits: ['apple', 'grape', 'lemon', 'orange', 'papaya'],
+                    footballPlayers: [
+                        { name: 'Messi', position: 'Forward' },
+                        { name: 'Neymar', position: 'Forward' },
+                        { name: 'Ramos', position: 'Defender' },
+                        { name: 'Modric', position: 'Mid Fielder' },
+                        { name: 'Neuer', position: 'Goal Keeper' },
+                    ]
+                }
+            },
+            methods: {
+                hapus(index) {
+                    this.fruits.splice(index, 1)
+                },
+                menghapus(main) {
+                    this.footballPlayers.splice(main, 1)
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>

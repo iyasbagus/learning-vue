@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>To Do List</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<style>
+    .bordered{
+        border: solid 3px;
+    }
+    .doneText{
+        text-decoration: line-through;
+        color: aquamarine;
+    }
+</style>
+
+<body>
+    <div id="app">
+        <div class="container">
+            <h1 class="mt-5 text-center">To Do List</h1>
+
+            <div class="row justify-content-center">
+                <div class="col-8 mt-5">
+                    <div class="row mt-3">
+                        <div class="col-2">
+                            <input type="text" class="form-control" placeholder="Start Time" v-model="startTime">
+                        </div>
+                        <div class="col-2">
+                            <input type="text" class="form-control" placeholder="End Time" v-model="endTime">
+                        </div>
+                        <div class="col-6">
+                            <input type="text" class="form-control" placeholder="New Activity" v-model="activity">
+                        </div>
+                        <div class="col-2">
+                            <button class="btn btn-info form-control text-white" @click="addTodo">Add</button>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mt-3">
+                        <div class="col-7 mt-3">
+                            <div class="p-2" v-for="(item, main) in todoList">
+                                <button @click="hapus(main)" class="btn btn-outline-danger me-3 ">Delete</button>
+                                <button class="btn btn-outline-success me-3" @click="finishTodo(main)">Done</button>
+                                <span :class="{doneText: item.done}">{{item.start}} - {{item.end}} : {{item.text}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+
+        createApp({
+            data() {
+                return {
+                    todoList: [
+                        { text: 'belajar html', start: '07:00', end: '08:00', done: false},
+                        { text: 'belajar css', start: '08:00', end: '09:00', done: false },
+                        { text: 'belajar javascript', start: '09:00', end: '10:00', done: false },
+                    ],
+                    startTime: '',
+                    endTime: '',
+                    activity: ''
+                }
+            },
+            methods: {
+                hapus(main) {
+                    this.todoList.splice(main, 1)
+                },
+                finishTodo(main) {
+                    this.todoList[main].done = true
+                },
+                addTodo() {
+                    let newItem = {
+                        text: this.activity,
+                        start: this.startTime,
+                        end: this.endTime,
+                        done: false
+                    }
+
+                    this.todoList.push(newItem)
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>
